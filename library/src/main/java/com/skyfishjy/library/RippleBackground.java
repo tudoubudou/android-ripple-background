@@ -65,10 +65,10 @@ public class RippleBackground extends RelativeLayout{
         final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RippleBackground);
         rippleColor=typedArray.getColor(R.styleable.RippleBackground_rb_color, getResources().getColor(R.color.rippelColor));
         rippleStrokeWidth=typedArray.getDimension(R.styleable.RippleBackground_rb_strokeWidth, getResources().getDimension(R.dimen.rippleStrokeWidth));
-        rippleRadius=typedArray.getDimension(R.styleable.RippleBackground_rb_radius,getResources().getDimension(R.dimen.rippleRadius));
+        rippleRadius=typedArray.getDimension(R.styleable.RippleBackground_rb_radius, getResources().getDimension(R.dimen.rippleRadius));
         rippleDurationTime=typedArray.getInt(R.styleable.RippleBackground_rb_duration,DEFAULT_DURATION_TIME);
-        rippleAmount=typedArray.getInt(R.styleable.RippleBackground_rb_rippleAmount,DEFAULT_RIPPLE_COUNT);
-        rippleScale=typedArray.getFloat(R.styleable.RippleBackground_rb_scale,DEFAULT_SCALE);
+        rippleAmount=typedArray.getInt(R.styleable.RippleBackground_rb_rippleAmount, DEFAULT_RIPPLE_COUNT);
+        rippleScale=typedArray.getFloat(R.styleable.RippleBackground_rb_scale, DEFAULT_SCALE);
         rippleType=typedArray.getInt(R.styleable.RippleBackground_rb_type,DEFAULT_FILL_TYPE);
         typedArray.recycle();
 
@@ -79,8 +79,10 @@ public class RippleBackground extends RelativeLayout{
         if(rippleType==DEFAULT_FILL_TYPE){
             rippleStrokeWidth=0;
             paint.setStyle(Paint.Style.FILL);
-        }else
+        }else{
+            paint.setStrokeWidth(rippleStrokeWidth);
             paint.setStyle(Paint.Style.STROKE);
+        }
         paint.setColor(rippleColor);
 
         rippleParams=new LayoutParams((int)(2*(rippleRadius+rippleStrokeWidth)),(int)(2*(rippleRadius+rippleStrokeWidth)));
